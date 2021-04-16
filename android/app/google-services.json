@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "950578293493",
+    "project_id": "softdev-mini",
+    "storage_bucket": "softdev-mini.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950578293493:android:88a613497fe90f7c8233bc",
+        "android_client_info": {
+          "package_name": "com.example.sdm_mini_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950578293493-s54og463v94nsaks325ochtf5tc415am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7-yo8CUWZTWrcnSiZEjHevKDRYsA-goE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950578293493-s54og463v94nsaks325ochtf5tc415am.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "950578293493-lfqvb32dvk3gmh4h97gdk2jqhmgp4v4s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFirebaseConnect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
