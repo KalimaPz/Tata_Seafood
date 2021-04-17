@@ -18,17 +18,20 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  Card foodCatergory({String name, Function action}) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  GestureDetector foodCatergory({ Image image ,String name, Function action}) {
+    return GestureDetector(
+      child: Card(
+        elevation: 5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('$name'),
-            ElevatedButton(
-              child: Text('เลือก'),
-              onPressed: () {},
+            SizedBox(
+              width: 96,
+              height: 96,
+              child: image),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
             ),
           ],
         ),
@@ -39,10 +42,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text('Main'),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: false,
+      //   title: Text('Main'),
+      // ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: Style.marginHorz),
@@ -51,8 +54,10 @@ class _HomeState extends State<Home> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical : 10.0),
-                  child: Text('เมนูแนะนำ',style: TextStyle(fontSize: 24,fontWeight: FontWeight.w700)),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text('เมนูแนะนำ',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
                 ),
               ),
               Row(
@@ -111,7 +116,7 @@ class _HomeState extends State<Home> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical : 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text('รายการอาหาร'),
                 ),
               ),
@@ -121,20 +126,35 @@ class _HomeState extends State<Home> {
                 ],
               ),
               Expanded(
-                child: ListView(
+                child: GridView.count(
+                  crossAxisCount: 2,
                   shrinkWrap: true,
                   children: [
-                    foodCatergory(name: 'อาหารจานเดียว', action: () {}),
-                    foodCatergory(name: 'อาหารทะเล', action: () {}),
-                    foodCatergory(name: 'อาหารทานเล่น', action: () {}),
-                    foodCatergory(name: 'อาหารอีสาน', action: () {}),
-                    foodCatergory(name: 'ยำ', action: () {}),
-                    foodCatergory(name: 'ซุป', action: () {}),
-                    foodCatergory(name: 'ผัด', action: () {}),
-                    foodCatergory(name: 'ของหวาน', action: () {}),
-                    foodCatergory(name: 'เครื่องดื่ม', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/breakfast.png'),name: 'อาหารจานเดียว', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/dish.png'),name: 'อาหารทะเล', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/french-fries.png'),name: 'อาหารทานเล่น', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/mortar.png'),name : 'อาหารอีสาน', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/salad.png'),name: 'ยำ', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/soup.png'),name: 'ซุป', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/fried.png'),name: 'ผัด', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/cake-slice.png'),name: 'ของหวาน', action: () {}),
+                    foodCatergory(image: Image.asset('assets/images/lemonade.png'),name: 'เครื่องดื่ม', action: () {}),
                   ],
                 ),
+                // ListView(
+                //   shrinkWrap: true,
+                //   children: [
+                //     foodCatergory(name: 'อาหารจานเดียว', action: () {}),
+                //     foodCatergory(name: 'อาหารทะเล', action: () {}),
+                //     foodCatergory(name: 'อาหารทานเล่น', action: () {}),
+                //     foodCatergory(name: 'อาหารอีสาน', action: () {}),
+                //     foodCatergory(name: 'ยำ', action: () {}),
+                //     foodCatergory(name: 'ซุป', action: () {}),
+                //     foodCatergory(name: 'ผัด', action: () {}),
+                //     foodCatergory(name: 'ของหวาน', action: () {}),
+                //     foodCatergory(name: 'เครื่องดื่ม', action: () {}),
+                //   ],
+                // ),
               ),
             ],
           ),
