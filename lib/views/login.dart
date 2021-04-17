@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdm_mini_project/views/menu/Backend.dart';
 
 class Login extends StatelessWidget {
   const Login({Key key}) : super(key: key);
@@ -74,21 +75,14 @@ class Login extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(30),
                                     ),
                                   ),
-                                  onPressed: () {},
-                                  child: Text('Sign In as Guest')),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Backend(),
+                                        ),
+                                        (route) => false);
+                                  },
                                   child: Text('Sign In as Owner')),
                             )
                           ],

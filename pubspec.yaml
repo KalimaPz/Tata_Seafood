@@ -18,6 +18,7 @@ dependencies:
   # cloud_firestore: ^1.0.5
   carousel_slider: ^3.0.0
   dots_indicator: ^2.0.0
+  font_awesome_flutter: ^9.0.0
 
 dev_dependencies:
   flutter_test:
@@ -26,8 +27,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-  #   - lib/Config/i18n/en.json
-  #   - lib/Config/i18n/th.json
   fonts:
     - family: Kanit
       fonts:
