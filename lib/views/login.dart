@@ -1,16 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sdm_mini_project/actions/auth.dart';
 import 'package:sdm_mini_project/views/menu/Backend.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
 
   @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  checkAuth() async {
+    final result = await FirebaseAuth.instance.currentUser;
+    if (result != null) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Backend(),
+          ));
+    }
+  }
+
+  @override
+  void initState() {
+    checkAuth();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    
     double textfield_width = MediaQuery.of(context).size.width - 100;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Container(
         constraints: BoxConstraints.expand(),
@@ -53,6 +77,7 @@ class Login extends StatelessWidget {
                         SizedBox(
                             width: textfield_width,
                             child: TextField(
+                              controller: emailController,
                               decoration: InputDecoration(hintText: 'Username'),
                             )),
                         SizedBox(
@@ -61,6 +86,7 @@ class Login extends StatelessWidget {
                         SizedBox(
                           width: textfield_width,
                           child: TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(hintText: 'Password'),
                           ),
@@ -71,30 +97,35 @@ class Login extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: 
-                              ElevatedButton(
+                              child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30),
                                     ),
                                   ),
                                   onPressed: () {
-                                    Auth().signIn(
-                                      email: ,password: 'zaq12wsx'
-                                    ).then((result) {
-                                      if(result != null) {
-                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Backend(),));
-                                      }
-                                      else {
-                                        print('Error');
+                                    print(
+                                        'mail : ${emailController.text.trim()}');
+                                    print(
+                                        'pass : ${passwordController.text.trim()}');
+                                    Auth()
+                                        .signIn(
+                                            email: emailController.text.trim(),
+                                            password:
+                                                passwordController.text.trim())
+                                        .then((result) {
+                                      print('res $result');
+                                      if (result != null) {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Backend(),
+                                            ));
                                       }
                                     });
-                
                                   },
                                   child: Text('Sign In as Owner')),
                             ),
-
-          
                           ],
                         )
                       ],

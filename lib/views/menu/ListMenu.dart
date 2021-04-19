@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sdm_mini_project/actions/menu.dart';
 import 'package:sdm_mini_project/config/style.dart';
+import 'package:sdm_mini_project/providers/FoodProvider.dart';
+import 'package:provider/provider.dart';
 
 class ListMenu extends StatefulWidget {
   final bool editMode;
@@ -41,7 +43,10 @@ class _ListMenuState extends State<ListMenu> {
                                     icon: FaIcon(FontAwesomeIcons.edit),
                                     onPressed: () {}),
                                 IconButton(
-                                    icon: FaIcon(FontAwesomeIcons.trash),
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.trash,
+                                      color: Colors.redAccent,
+                                    ),
                                     onPressed: callback),
                               ],
                             ),
@@ -71,15 +76,15 @@ class _ListMenuState extends State<ListMenu> {
             appBar: AppBar(
               title: Text('รายการอาหาร'),
             ),
-            body: Center(
-              child: Text('ไม่มีข้อมูล'),
-            ),
+            body: Center(child: Text('ไม่มีข้อมูลอาหาร')),
           )
         : Scaffold(
             body: CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  title: Text('รายการอาหาร'),
+                  title: widget.editMode == false
+                      ? Text('รายการอาหาร')
+                      : Text('แก้ไขรายการอาหาร'),
                 ),
                 SliverList(
                     delegate: SliverChildListDelegate([
@@ -94,7 +99,9 @@ class _ListMenuState extends State<ListMenu> {
                           widget.foods[index]['price'],
                           callback: () => ActionMenu()
                               .deleteMenu(widget.foods[index]['name'])
-                              );
+                              .whenComplete(() => context
+                                  .read<FoodProvider>()
+                                  .loadAllFoodMenu()));
                     },
                   ),
                 ]))

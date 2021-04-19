@@ -31,7 +31,7 @@ class _EditMenuState extends State<EditMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text('เพิ่มรายการอาหาร')),
+      appBar: AppBar(title: Text('รายการอาหาร')),
       body: Column(
         children: [
           Padding(
