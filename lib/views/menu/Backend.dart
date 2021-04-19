@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sdm_mini_project/providers/FoodProvider.dart';
 import 'package:sdm_mini_project/views/menu/AddNewMenu.dart';
 import 'package:sdm_mini_project/views/menu/ListMenu.dart';
-
+import 'package:provider/provider.dart';
 class Backend extends StatelessWidget {
   const Backend({Key key}) : super(key: key);
 
@@ -42,7 +43,7 @@ class Backend extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListMenu(
+                        builder: (context) => ListMenu(foods: context.watch<FoodProvider>().foods_menu,
                           editMode: true,
                         ),
                       ));

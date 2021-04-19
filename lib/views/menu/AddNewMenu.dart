@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sdm_mini_project/actions/menu.dart';
 import 'package:sdm_mini_project/config/style.dart';
 
 class AddNewMenu extends StatefulWidget {
@@ -17,7 +18,7 @@ class _AddNewMenuState extends State<AddNewMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: true,
       appBar: AppBar(title: Text('เพิ่มรายการอาหาร')),
       body: Column(
         children: [
@@ -217,6 +218,13 @@ class _AddNewMenuState extends State<AddNewMenu> {
                                             primary: Colors.green),
                                         child: Text('ยืนยัน'),
                                         onPressed: () {
+                                          ActionMenu().addNewMenu({
+                                            "name":
+                                                menuNameController.text.trim(),
+                                            "category": catergory,
+                                            "price": int.parse(
+                                                priceController.text.trim()),
+                                          });
                                           Navigator.pop(context);
                                         },
                                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdm_mini_project/actions/auth.dart';
 import 'package:sdm_mini_project/views/menu/Backend.dart';
 
 class Login extends StatelessWidget {
@@ -6,6 +7,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     double textfield_width = MediaQuery.of(context).size.width - 100;
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -69,22 +71,30 @@ class Login extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: ElevatedButton(
+                              child: 
+                              ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30),
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Backend(),
-                                        ),
-                                        (route) => false);
+                                    Auth().signIn(
+                                      email: ,password: 'zaq12wsx'
+                                    ).then((result) {
+                                      if(result != null) {
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Backend(),));
+                                      }
+                                      else {
+                                        print('Error');
+                                      }
+                                    });
+                
                                   },
                                   child: Text('Sign In as Owner')),
-                            )
+                            ),
+
+          
                           ],
                         )
                       ],

@@ -2,9 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sdm_mini_project/actions/menu.dart';
 import 'package:sdm_mini_project/config/style.dart';
+import 'package:sdm_mini_project/providers/FoodProvider.dart';
 import 'package:sdm_mini_project/views/login.dart';
 import 'package:sdm_mini_project/views/menu/ListMenu.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -14,10 +17,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
   double _currentIndex = 0;
   CarouselController _carouselController = CarouselController();
+
   @override
   void initState() {
+    context.read<FoodProvider>().loadAllFoodMenu();
     super.initState();
   }
 
@@ -77,7 +84,11 @@ class _HomeState extends State<Home> {
                                   color: Colors.blue,
                                 ),
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Login(),
+                                      ));
                                 })
                           ],
                         ),
@@ -95,14 +106,17 @@ class _HomeState extends State<Home> {
             CarouselSlider(
                 carouselController: _carouselController,
                 items: [
-                  Container(
-                    color: Colors.blue,
+                  Image.asset(
+                    'assets/images/menu01.jpg',
+                    width: 512,
                   ),
-                  Container(
-                    color: Colors.green,
+                  Image.asset(
+                    'assets/images/menu02.jpg',
+                    width: 512,
                   ),
-                  Container(
-                    color: Colors.blue,
+                  Image.asset(
+                    'assets/images/menu03.jpg',
+                    width: 512,
                   ),
                 ],
                 options: CarouselOptions(
@@ -139,7 +153,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            // Text(_carouselController.),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -148,8 +161,6 @@ class _HomeState extends State<Home> {
                   children: [
                     Expanded(
                       child: Card(
-                          // padding: const EdgeInsets.symmetric(vertical : 20.0),
-                          // color: Colors.blue,
                           child: Padding(
                         padding: EdgeInsets.all(Style.marginHorz),
                         child: Text(
@@ -165,7 +176,18 @@ class _HomeState extends State<Home> {
             ),
             Row(
               children: [
-                Expanded(child: Divider()),
+                // Expanded(child: Divider()),
+                Expanded(
+                //     child: ElevatedButton(
+                //   child: Text('Test Add'),
+                //   onPressed: () {
+                //     // ActionMenu().addNewMenu(
+                //     //     {"category": 6, "name": "Curry", "price": 90});
+                //     // ActionMenu().deleteMenu();
+                //   },
+                // )
+                child: Divider(),
+                ),
               ],
             ),
             Padding(
@@ -182,41 +204,170 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ListMenu(),
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('1'))
+                                    .toList(),
+                              ),
                             ));
                       }),
                   foodCatergory(
                       image: Image.asset('assets/images/dish.png'),
                       name: 'อาหารทะเล',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('2'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/french-fries.png'),
                       name: 'อาหารทานเล่น',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('3'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/mortar.png'),
                       name: 'อาหารอีสาน',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('4'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/salad.png'),
                       name: 'ยำ',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('5'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/soup.png'),
                       name: 'ซุป',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('6'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/fried.png'),
                       name: 'ผัด',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('7'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/cake-slice.png'),
                       name: 'ของหวาน',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('8'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                   foodCatergory(
                       image: Image.asset('assets/images/lemonade.png'),
                       name: 'เครื่องดื่ม',
-                      action: () {}),
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListMenu(
+                                editMode: false,
+                                foods: context
+                                    .watch<FoodProvider>()
+                                    .foods_menu
+                                    .where((result) => result['category']
+                                        .toString()
+                                        .contains('9'))
+                                    .toList(),
+                              ),
+                            ));
+                      }),
                 ],
               ),
             ),
