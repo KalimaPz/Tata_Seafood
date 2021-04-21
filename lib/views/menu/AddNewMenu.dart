@@ -31,12 +31,104 @@ class _AddNewMenuState extends State<AddNewMenu> {
                 hintText: 'ชื่ออาหาร',
               ),
             ),
-            TextField(
-              controller: priceController,
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                hintText: 'ราคา',
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: TextField(
+                    onSubmitted: (value) {},
+                    controller: priceController,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      hintText: 'ราคา',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  child: ElevatedButton.icon(
+                      icon: FaIcon(
+                        FontAwesomeIcons.plus,
+                        size: 12,
+                      ),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height / 4,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text('ยืนยันการเพิ่มเมนู'),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 50),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              primary: Colors.green),
+                                          child: Text('ยืนยัน'),
+                                          onPressed: () {
+                                            ActionMenu().addNewMenu({
+                                              "name": menuNameController.text
+                                                  .trim(),
+                                              "category": catergory,
+                                              "price": int.parse(
+                                                  priceController.text.trim()),
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 50),
+                                        child: Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                primary: Colors.red),
+                                            child: Text('ยกเลิก'),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      label: Text(
+                        'เพิ่มเมนู',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      )),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -176,90 +268,6 @@ class _AddNewMenuState extends State<AddNewMenu> {
                 },
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: SizedBox(
-                  height: 50,
-                  child: ElevatedButton.icon(
-                      icon: FaIcon(FontAwesomeIcons.plus),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Container(
-                            height: MediaQuery.of(context).size.height / 4,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Text('ยืนยันการเพิ่มเมนู'),
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 50),
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              primary: Colors.green),
-                                          child: Text('ยืนยัน'),
-                                          onPressed: () {
-                                            ActionMenu().addNewMenu({
-                                              "name": menuNameController.text
-                                                  .trim(),
-                                              "category": catergory,
-                                              "price": int.parse(
-                                                  priceController.text.trim()),
-                                            });
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 50),
-                                        child: Expanded(
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                primary: Colors.red),
-                                            child: Text('ยกเลิก'),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      label: Text(
-                        'เพิ่มเมนูอาหารใหม่',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      )),
-                )),
-              ],
-            )
           ],
         ),
       ),

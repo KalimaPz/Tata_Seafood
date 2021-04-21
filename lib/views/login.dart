@@ -40,21 +40,20 @@ class _LoginState extends State<Login> {
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
-                    'https://flutter-examples.com/wp-content/uploads/2020/02/dice.jpg'),
-                fit: BoxFit.cover)),
+                image: AssetImage('assets/image/bg.jpg'), fit: BoxFit.cover)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 128,
-              height: 128,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(100),
-              ),
-            ),
+            // Container(
+            //   width: 128,
+            //   height: 128,
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(100),
+            //   ),
+            // ),
+            //
             SizedBox(
               height: 50,
             ),
